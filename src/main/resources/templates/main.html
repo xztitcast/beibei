@@ -1,0 +1,300 @@
+﻿<!doctype html>
+<html class="x-admin-sm">
+<head>
+    <meta charset="UTF-8">
+    <title>贝贝游戏管理系统</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" href="static/images/favicon.ico">
+    <link rel="stylesheet" href="static/css/font.css">
+    <link rel="stylesheet" href="static/css/xadmin.css">
+    <!-- <link rel="stylesheet" href="./css/theme5.css"> -->
+    <script src="static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="static/js/xadmin.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+        // 是否开启刷新记忆tab功能
+        // var is_remember = false;
+    </script>
+</head>
+<body class="index">
+<!-- 顶部开始 -->
+<div class="container">
+    <div class="logo">
+        <a href="main.html">贝贝游戏管理系统V5</a></div>
+    <div class="left_open">
+        <a><i title="展开左侧栏" class="iconfont">&#xe699;</i></a>
+    </div>
+    <ul class="layui-nav right" lay-filter="">
+        <li class="layui-nav-item">
+            <span>仅供学习交流使用，请勿用于商业行为！</span>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">退出登录</a>
+            <dl class="layui-nav-child">
+                <!-- 二级菜单 -->
+<!--                <dd>-->
+<!--                    <a onclick="xadmin.open('修改密码','Admin/AdminPage/updAdmin.html')">修改密码</a></dd>-->
+                <dd>
+                    <a href="Logout">退出</a></dd>
+            </dl>
+        </li>
+    </ul>
+</div>
+<!-- 顶部结束 -->
+<!-- 中部开始 -->
+<!-- 左侧菜单开始 -->
+<div class="left-nav">
+    <div id="side-nav">
+        <ul id="nav">
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="登录器配置">&#xe6ae;</i>
+                    <cite>登录器配置</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('区组配置','Admin/Config/AreaConfig/updAreaConfig.html')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>区组配置</cite></a>
+                    </li>
+                    <li>
+                        <a onclick="xadmin.add_tab('大飞注册配置','Admin/Config/DaFeiConfig/updDaFeiConfig.html')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>大飞注册配置</cite></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="GM工具">&#xe6cb;</i>
+                    <cite>GM工具</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('常用工具','Admin/Tools/GMTool/GMtool.html')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>常用工具</cite></a>
+                    </li>
+                    <li>
+                        <a onclick="xadmin.add_tab('角色数据修改','Admin/Tools/RoleDataChange/RoleDataChange.html')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>角色数据修改</cite></a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="帐号列表">&#xe6b8;</i>
+                    <cite>帐号列表</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('所有帐号','account/list')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>所有帐号</cite></a>
+                    </li>
+                    <li>
+                        <a onclick="xadmin.add_tab('封禁帐号','account/locked')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>封禁帐号</cite></a>
+                    </li>
+                    <li>
+                        <a onclick="xadmin.add_tab('黑名单帐号','Admin/AccountList/AccountList_black.html')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>黑名单帐号</cite></a>
+                    </li>
+                    <li>
+                        <a onclick="xadmin.add_tab('GM帐号','account/gm')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>GM帐号</cite></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="发货系统">&#xe6e3;</i>
+                    <cite>发货系统</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('发送道具','Admin/SendItem/SendItem.html')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>发送道具</cite></a>
+                    </li>
+                    <li>
+                        <a onclick="xadmin.add_tab('发送积分大使积分','Admin/SendItem/SendScore.html')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>发送积分大使积分</cite></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="CDK系统">&#xe75f;</i>
+                    <cite>CDK系统</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('CDK管理','Admin/CDK/cdkList.html')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>CDK管理</cite></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="心法异常检测">&#xe6eb;</i>
+                    <cite>心法异常检测</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('心法异常检测','Admin/ErrorCheck/ErrorCheckUseHelp.html')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>心法异常检测</cite></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="自助充值系统">&#xe6e5;</i>
+                    <cite>自助充值系统</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('账户配置','Admin/Charge/PayConfig.html')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>账户配置</cite></a>
+                    </li>
+                    <li>
+                        <a onclick="xadmin.add_tab('赠送配置','Admin/Charge/ChargeConfig.html')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>赠送配置</cite></a>
+                    </li>
+                    <li>
+                        <a onclick="xadmin.add_tab('充值记录','Admin/Charge/Charge_log.html')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>充值记录</cite></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="回收系统">&#xe70c;</i>
+                    <cite>回收系统</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('配置列表','Admin/Recall/RecallList.html')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>配置列表</cite></a>
+                    </li>
+                    <li>
+                        <a onclick="xadmin.add_tab('回收记录','Admin/Recall/RecallLog.html')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>回收记录</cite></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="泡点系统">&#xe713;</i>
+                    <cite>泡点系统</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('泡点配置','Admin/PaoDian/PaoDianConfig.html')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>泡点配置</cite></a>
+                    </li>
+                    <li>
+                        <a onclick="xadmin.add_tab('泡点日志','Admin/PaoDian/PaoDianLog.html')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>泡点日志</cite></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="其他功能">&#xe6b4;</i>
+                    <cite>其他功能</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+
+                    <li>
+                        <a href="javascript:;">
+                            <i class="iconfont left-nav-li" lay-tips="防CC相关">&#xe6a7;</i>
+                            <cite>防CC相关</cite>
+                            <i class="iconfont nav_right">&#xe697;</i></a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a onclick="xadmin.add_tab('端口切换','Admin/Others/CCDefender/TransPort.html')">
+                                    <i class="iconfont">&#xe6a7;</i>
+                                    <cite>端口切换</cite></a>
+                            </li>
+                            <li>
+                                <a onclick="xadmin.add_tab('添加IP白名单','Admin/Others/CCDefender/AddWhileIP.html')">
+                                    <i class="iconfont">&#xe6a7;</i>
+                                    <cite>添加IP白名单</cite></a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a onclick="xadmin.add_tab('数据库清理','Admin/Others/CleanDB/CleanPage.html')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>数据库清理</cite></a>
+                    </li>
+
+                    <li>
+                        <a onclick="xadmin.add_tab('修改密码','Admin/AdminPage/updAdmin.html')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>修改密码</cite></a>
+                    </li>
+
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- <div class="x-slide_left"></div> -->
+<!-- 左侧菜单结束 -->
+<!-- 右侧主体开始 -->
+<div class="page-content">
+    <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
+        <ul class="layui-tab-title">
+            <li class="home">
+                <i class="layui-icon">&#xe68e;</i>主页
+            </li>
+        </ul>
+        <div class="layui-unselect layui-form-select layui-form-selected" id="tab_right">
+            <dl>
+                <dd data-type="this">关闭当前</dd>
+                <dd data-type="other">关闭其它</dd>
+                <dd data-type="all">关闭全部</dd>
+            </dl>
+        </div>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <iframe src='/home' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+            </div>
+        </div>
+        <div id="tab_show"></div>
+    </div>
+</div>
+<div class="page-content-bg"></div>
+<style id="theme_style"></style>
+<!-- 右侧主体结束 -->
+<!-- 中部结束 -->
+</body>
+
+</html>

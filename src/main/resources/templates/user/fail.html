@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>提醒页面</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="/static/img/logo.png" />
+    <link rel="stylesheet" href="/static/lib/layui/css/layui.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/lib/layer/layer.js"></script>
+    <script src="/static/lib/layui/layui.js"></script>
+
+</head>
+<body onload="ok()">
+<a style="color: #FD482C;font-size: larger" href="Register.html">充值失败，点击返回首页</a>
+<script>
+    function ok() {
+        layer.alert("提交参数有误或帐号在线，无法充值！")
+    }
+</script>
+</body>
+</html>

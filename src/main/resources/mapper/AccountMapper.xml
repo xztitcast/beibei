@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.game.beibei.mapper.AccountMapper" >
+  
+  <update id="checksum">
+  	UPDATE `account`
+	SET `checksum` = upper(
+		CAST(
+			md5(
+				concat(
+					CAST( `account` AS CHAR CHARACTER SET utf8 ),
+					CAST( `password` AS CHAR CHARACTER SET utf8 ),
+					CAST( LPAD( CONV( privilege, 10, 16 ), 8, 0 ) AS CHAR CHARACTER SET utf8 ),
+					CAST( blocked_time AS CHAR CHARACTER SET utf8 ),
+					CAST( LPAD( CONV( gold_coin, 10, 16 ), 8, 0 ) AS CHAR CHARACTER SET utf8 ),
+					CAST( LPAD( CONV( silver_coin, 10, 16 ), 8, 0 ) AS CHAR CHARACTER SET utf8 ),
+					CAST( coin_password AS CHAR CHARACTER SET utf8 ),
+					CAST( unlock_coin_password_time AS CHAR CHARACTER SET utf8 ),
+					CAST( trade_lock_time AS CHAR CHARACTER SET utf8 ),
+					CAST( permit_ip AS CHAR CHARACTER SET utf8 ),
+					'ABCDEF' 
+				)) AS CHAR 
+		)) 
+	WHERE
+		`account` = #{account}
+  </update>
+</mapper>

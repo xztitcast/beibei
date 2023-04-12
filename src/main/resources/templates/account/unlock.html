@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>帐号解封</title>
+    <link rel="stylesheet" href="/static/lib/layui/css/layui.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/lib/layer/layer.js"></script>
+    <script src="/static/lib/layui/layui.js"></script>
+</head>
+
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>角色恢复</legend>
+</fieldset>
+
+    <form id="unLockForm">
+        <div class="layui-form-item">
+            <label class="layui-form-label">GID</label>
+            <div class="layui-input-inline">
+                <input type="text" name="gid" required lay-verify="required" placeholder="GID信息" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" id="doUnLockButton" class="layui-btn layui-btn-danger">解封角色和帐号</button>
+            </div>
+        </div>
+    </form>
+
+<script>
+    layui.use('form', function () {
+        var form = layui.form;
+        //监听提交
+    });
+    document.getElementById("doUnLockButton").addEventListener("click", doUnLockAccount)
+    function doUnLockAccount() {
+        $.ajax({
+            type: "POST",
+            url: "unLOCK_ERROR_ACCOUNT",
+            data: $('#unLockForm').serialize(),
+            success: function (result) {
+                layer.msg(result,{icon:1})
+            }
+        })
+
+    }
+</script>
+</body>
+</html>

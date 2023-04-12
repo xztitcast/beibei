@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.game.beibei.mapper.DataBackMapper" >
+  
+  <sql id="Base_Column_List">
+  	`path`, `name`, `branch`, `content`, `time`, `checksum`
+  </sql>
+  <select id="selectByMultiId" resultType="com.game.beibei.entity.ddb1.DataBack">
+  	SELECT 
+  		<include refid="Base_Column_List" />
+  	FROM
+  		`data`
+  	WHERE
+  		`path` = #{path} AND `name` = #{name} AND `branch` = #{branch}
+  </select>
+  
+  <update id="updateByMultiId" parameterType="com.game.beibei.entity.ddb1.DataBack">
+  	UPDATE
+  		`data`
+  	SET
+  		`content` = #{content}, `checksum` = #{checksum}
+  	WHERE
+  		`path` = #{path} AND `name` = #{name} AND `branch` = #{branch}
+  </update>
+  
+  <delete id="removeByMultiId" parameterType="com.game.beibei.entity.ddb1.DataBack">
+  	DELETE FROM `data` WHERE `path` = #{path} AND `name` = #{name} AND `branch` = #{branch}
+  </delete>
+</mapper>

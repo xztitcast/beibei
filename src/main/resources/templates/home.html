@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>用户注册</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="static/img/logo.png"/>
+    <link rel="stylesheet" href="static/lib/layui/css/layui.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/lib/layui/layui.js"></script>
+</head>
+<body>
+<div class="layui-card">
+    <div class="layui-card-header"><strong>在线人数信息：</strong></div>
+    <div class="layui-card-body ">
+        <table class="layui-table"
+        	lay-filter="dataForm"
+        	lay-data="{
+			  id: 'dataForm',
+			  url:'/admin/server/list', 
+        	  page: true,
+        	  limit: 20,
+        	  request: {
+			  	pageName: 'pageNum',
+			  	limitName: 'pageSize'
+			  },
+			  parseData: function(res) {
+			    return {
+				  'code': res.code,
+				  'msg': res.msg,
+				  'total': res.result.total,
+				  'data': res.result.pageList
+			    }
+			 },
+			 initSort:{field:'online', type:'asc'}}">
+            <thead>
+                <tr>
+                    <th lay-data="{type:'checkbox'}">ID</th>
+                    <th lay-data="{field:'server', align: 'center'}">服务器名</th>
+                    <th lay-data="{field:'dist', align: 'center'}">区组</th>
+                    <th lay-data="{field:'enable', align: 'center', templet: '#statusTpl'}">状态</th>
+                    <th lay-data="{field:'maxUser', align: 'center'}">最大人数</th>
+                    <th lay-data="{field:'online', align: 'center', sort: true}">在线人数</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+</div>
+<script type="text/html" id="statusTpl">
+  {{# 
+  	if(d.enable === 1){ 
+	  return '<span class="layui-btn layui-btn-sm layui-btn-normal">已启用</span>'
+ 	}else{
+		return '<span class="layui-btn layui-btn-sm layui-border-red">已下线</span>' 
+    }
+  }}
+</script>
+<script>
+    layui.use('table', function () {
+        var table = layui.table;
+        table.render({
+            elem: '#dataForm'
+        });
+    });
+</script>
+</body>
+</html>

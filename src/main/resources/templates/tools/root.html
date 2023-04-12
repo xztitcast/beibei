@@ -1,0 +1,496 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>贝贝游戏管理系统</title>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="stylesheet" type="text/css" href="/static/lib/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/lib/layer/layer.js"></script>
+    <script src="/static/lib/layui/layui.js"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <div class="layui-tab">
+                        <ul class="layui-tab-title">
+                            <li>大飞注册</li>
+                            <li>帐号注册</li>
+                            <li>修改密码</li>
+                            <li>修改权限</li>
+                            <li>元宝充值</li>
+                            <li>删除帐号</li>
+                            <li>角色转移</li>
+                        </ul>
+                        <div class="layui-tab-content">
+                            <!--大飞注册-->
+                            <div class="layui-tab-item  layui-show">
+                                <form class="layui-form" id="GMdafeiForm">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">帐号</label>
+                                        <div class="layui-input-inline">
+                                            <input id="acc" type="text" name="account" required lay-verify="required"
+                                                   placeholder="请输入帐号"
+                                                   autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                        <!--</div>-->
+                                        <!--<div class="layui-form-item">-->
+                                        <label class="layui-form-label">密码</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="password" required lay-verify="required"
+                                                   placeholder="请输入密码"
+                                                   autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                        <!--</div>
+                                        <div class="layui-form-item">-->
+                                        <label class="layui-form-label">超级密码</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="email" required lay-verify="required" value="123"
+                                                   autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">角色名</label>
+                                        <div class="layui-input-inline">
+                                            <input id="RoleName" type="text" name="name" required lay-verify="required"
+                                                   autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                        <!--</div>-->
+                                        <!---->
+                                        <!--<div class="layui-form-item">-->
+                                        <label class="layui-form-label">等级</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="level" required lay-verify="required" value="165"
+                                                   autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                        <!-- </div>
+
+                                         <div class="layui-form-item">-->
+                                        <label class="layui-form-label">赠送道行</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="tao" required lay-verify="required" value="10000"
+                                                   autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">金元宝</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="gold_coin" required lay-verify="required"
+                                                   value="2000000000"
+                                                   autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                        <!--</div>-->
+                                        <!--<div class="layui-form-item">-->
+                                        <label class="layui-form-label">银元宝</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="silver_coin" required lay-verify="required"
+                                                   value="2000000000"
+                                                   autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">游戏币</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="cash" required lay-verify="required"
+                                                   value="2000000000"
+                                                   autocomplete="off" class="layui-input">
+                                        </div>
+                                        <!--</div>-->
+
+                                        <!--<div class="layui-form-item">-->
+                                        <label class="layui-form-label">代金券</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="vcash" required lay-verify="required"
+                                                   value="2000000000"
+                                                   autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">赠送守护</label>
+                                        <div class="layui-input-inline">
+                                            <select name="isGuard" lay-verify="required">
+                                                <option value="1">是</option>
+                                                <option value="0">否</option>
+                                            </select>
+                                        </div>
+                                        <!--</div>
+                                        <div class="layui-form-item">-->
+                                        <label class="layui-form-label">守护亲密</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="guardIntimacy" required lay-verify="required"
+                                                   value="5000000"
+                                                   autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">赠送娃娃</label>
+                                        <div class="layui-input-inline">
+                                            <select name="isChild" lay-verify="required">
+                                                <option value="1">是</option>
+                                                <option value="0">否</option>
+                                            </select>
+                                        </div>
+                                        <!--   </div>
+                                           <div class="layui-form-item">-->
+                                        <label class="layui-form-label">娃娃亲密</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="childIntimacy" required lay-verify="required"
+                                                   value="5000000"
+                                                   autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">赠送技能</label>
+                                        <div class="layui-input-inline">
+                                            <select name="isSkill" lay-verify="required">
+                                                <option value="1">是</option>
+                                                <option value="0">否</option>
+                                            </select>
+                                        </div>
+                                        <!--</div>
+                                            <div class="layui-form-item">-->
+                                        <label class="layui-form-label">技能精研</label>
+                                        <div class="layui-input-inline">
+                                            <select name="isSkillDouble" lay-verify="required">
+                                                <option value="1">是</option>
+                                                <option value="0">否</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">相性</label>
+                                        <div class="layui-input-inline">
+                                            <select name="polar" lay-verify="required">
+                                                <option value="1">金</option>
+                                                <option value="2">木</option>
+                                                <option value="3">水</option>
+                                                <option value="4">火</option>
+                                                <option value="5">土</option>
+                                            </select>
+                                        </div>
+                                        <!--</div>
+
+                                            <div class="layui-form-item">-->
+                                        <label class="layui-form-label">角色新旧</label>
+                                        <div class="layui-input-inline">
+                                            <select name="religion" lay-verify="required">
+                                                <option value="1">旧</option>
+                                                <option value="2">新</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">性别</label>
+                                        <div class="layui-input-inline">
+                                            <select name="gender" lay-verify="required">
+                                                <option value="1">男</option>
+                                                <option value="2">女</option>
+                                            </select>
+                                        </div>
+                                        <!--</div>
+                                            <div class="layui-form-item">-->
+                                        <label class="layui-form-label">飞升类型</label>
+                                        <div class="layui-input-inline">
+                                            <select name="type" lay-verify="required">
+                                                <option value="4">魔</option>
+                                                <option value="3">仙</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">权限</label>
+                                        <div class="layui-input-inline">
+                                            <select name="privilege" lay-verify="required">
+                                                <option value="0">普通玩家</option>
+                                                <option value="200">200权限</option>
+                                                <option value="300">300权限</option>
+                                                <option value="1000">1000权限(内测)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button type="button" id="DaFeiRegButton" class="layui-btn">立即注册</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!--账号注册-->
+                            <div class="layui-tab-item">
+                                <form id="RegForm" class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">帐号</label>
+                                        <div class="layui-input-inline">
+                                            <input id="normalacc" type="text" name="account" required
+                                                   lay-verify="required"
+                                                   placeholder="请输入帐号" autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">密码</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="password" required lay-verify="required"
+                                                   placeholder="请输入密码"
+                                                   autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">超级密码</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="email" required lay-verify="required" value="123"
+                                                   placeholder="请输入超级密码"
+                                                   autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">金元宝</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="gold_coin" required lay-verify="required"
+                                                   value="2000000000"
+                                                   placeholder="请输入金元宝数量" autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">银元宝</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="silver_coin" required lay-verify="required"
+                                                   value="2000000000"
+                                                   placeholder="请输入银元宝数量" autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">权限</label>
+                                        <div class="layui-input-inline">
+                                            <select name="privilege" lay-verify="required">
+                                                <option value="0">普通玩家</option>
+                                                <option value="200">200权限</option>
+                                                <option value="300">300权限</option>
+                                                <option value="1000">1000权限(内测)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button type="button" id="NoralRegButton" class="layui-btn">立即注册</button>
+                                            <!--onclick="doReg()"-->
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!--修改密码-->
+                            <div class="layui-tab-item">
+                                <form id="CpwdForm">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">用户名</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="account" required lay-verify="required"
+                                                   placeholder="帐号"
+                                                   autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">密码</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="password" required lay-verify="required"
+                                                   placeholder="请输入密码"
+                                                   autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button type="button" id="CPwdButton" class="layui-btn">修改密码</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!--修改权限-->
+                            <div class="layui-tab-item">
+                                <form id="CpriForm" class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">用户名</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="account" required lay-verify="required"
+                                                   placeholder="帐号"
+                                                   autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">权限</label>
+                                        <div class="layui-input-inline">
+                                            <select name="privilege" lay-verify="required">
+                                                <option value="0">普通玩家</option>
+                                                <option value="200">200权限</option>
+                                                <option value="300">300权限</option>
+                                                <option value="1000">1000权限(内测)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button type="button" id="CPriButton" class="layui-btn">修改权限</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                            <!--元宝充值-->
+                            <div class="layui-tab-item">
+                                <form id="ChargeForm">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">帐号</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="account" required lay-verify="required"
+                                                   placeholder="帐号"
+                                                   autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">金元宝</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="gold_coin" required lay-verify="required"
+                                                   value="0"
+                                                   placeholder="金元宝数量" autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">银元宝</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="silver_coin" required lay-verify="required"
+                                                   value="0"
+                                                   placeholder="银元宝数量" autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button type="button" id="doChargeButton" class="layui-btn">元宝充值</button>
+                                            <button type="button" id="doSetButton" class="layui-btn layui-btn-normal">
+                                                元宝修改
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button type="button" id="doChargeButtonAll"
+                                                    class="layui-btn layui-btn-radius layui-btn-danger">全区充值
+                                            </button>
+                                            <button type="button" id="doSetButtonAll"
+                                                    class="layui-btn layui-btn-radius layui-btn-danger">全区修改
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!--删除帐号-->
+                            <div class="layui-tab-item">
+                                <form id="DelAccountForm">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">帐号</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="account" required lay-verify="required"
+                                                   placeholder="帐号"
+                                                   autocomplete="off"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button type="button" id="doDelButton" class="layui-btn">删除帐号</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="layui-tab-item">
+                                <form id="MoveRole" class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">原始帐号</label>
+                                        <div class="layui-input-inline">
+                                            <input id="account_moverole" type="text" name="account" class="layui-input">
+                                        </div>
+                                        <a id="GetRoles_moverole" class="layui-btn layui-btn-radius">获取角色</a>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">角色名</label>
+                                        <div class="layui-input-inline">
+                                            <select id="rolename_moverole" name="rolename" lay-verify="required">
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">目标帐号</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="newaccount" class="layui-input">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <a id="MoveRoleButton" type="button" class="layui-btn">立即转移</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/js/tools/root.js"></script>
+</body>
+</html>

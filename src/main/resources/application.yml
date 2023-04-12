@@ -1,0 +1,38 @@
+server:
+  port: 20880
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    context-path: /
+  shutdown: graceful
+    
+spring:
+  application:
+    name: beibei
+  lifecycle:
+    timeout-per-shutdown-phase: 30S
+  config:
+    activate:
+      on-profile:
+      - dev
+      - prod
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 500MB
+      max-request-size: 500MB
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+mybatis-plus:
+  mapper-locations:
+  - classpath:mapper/**/*.xml
+  typeAliasesPackage: com.game.beibei.entity
+  global-config:
+    banner: false
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
+    jdbc-type-for-null: 'null'
