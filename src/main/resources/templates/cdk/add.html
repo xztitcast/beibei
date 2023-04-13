@@ -26,8 +26,7 @@
             <div class="layui-card">
                 <div class="layui-card-body ">
                     <h4 style="color: white">这是一个彩蛋 ....</h4>
-                    <form id="addCDKForm" class="layui-form">
-
+                    <form class="layui-form">
                         <div class="layui-form-item">
                             <label class="layui-form-label">类型</label>
                             <div class="layui-input-inline" style="width: 180px">
@@ -77,7 +76,7 @@
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-input-block">
-                                <button type="button" id="addButton" class="layui-btn">立即提交</button>
+                                <button type="submit" lay-submit lay-filter="dataFormSubmit" class="layui-btn">立即提交</button>
                                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                             </div>
                         </div>
@@ -91,6 +90,18 @@
     layui.use('form', function () {
         var form = layui.form;
         //监听提交
+        form.on('submit(dataFormSubmit)', function(data) {
+			$.ajax({
+				type: 'POST',
+				url: '/login',
+				contentType: 'application/json',
+				data: JSON.stringify(data.field),
+				success: function(res) {
+					layer.msg(result)
+				}
+			})
+			return false
+		})
     });
     document.getElementById("addButton").addEventListener("click", function () {
         layer.msg("请耐心等待。。。", {

@@ -37,7 +37,7 @@
                 <div class="layui-card-body ">
                     <span>注意：心法异常被封禁的帐号，需要复制GID后<a id="unlockError" style="color: #ff0000;font-size: larger">点击这里</a>解封角色<br></span>
 
-                    <table class="layui-hide" id="AccountList_locked" lay-filter="acclist_locked"></table>
+                    <table class="layui-hide" id="dataList" lay-filter="dataListFilter"></table>
                     <hr class="layui-bg-green">
 
                 </div>
@@ -45,8 +45,8 @@
         </div>
     </div>
 </div>
-<script src="/static/js/account/locked.js"></script>
-<script type="text/html" id="barDemo_locked">
+<script src="/static/js/account/list.js"></script>
+<script type="text/html" id="dataToolbar">
     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="unlock">解封</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>

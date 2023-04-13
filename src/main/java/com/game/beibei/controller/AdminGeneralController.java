@@ -9,7 +9,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -146,51 +145,29 @@ public class AdminGeneralController implements ApplicationContextAware {
 		return R.error(S.ACCOUNT_PASSWORD_UPDATE_ERR);
 	}
 	
-	@PostMapping(value = "/privilege", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-	public R privilege(@RequestParam @NotBlank(message = "账号不能为空") String account,
-			@RequestParam @NotBlank(message = "权限不能为空") String privilege) {
-		Account entity = accountService.getById(account);
-		if(entity == null) {
+	@GetMapping("/updateCoin")
+	public R updateCoin(@RequestParam String account,
+			@RequestParam Integer goldCoin,
+			@RequestParam Integer silverCoin) {
+		List<Account> list = null;
+		if("ALL".equals(account.toUpperCase())) {
+			list = accountService.list();
+		}else {
+			Account entity = accountService.getById(account);
+			list = List.of(entity);
+		}
+		if(CollectionUtils.isEmpty(list)) {
 			return R.error(S.ACCOUNT_NOTFUND_ERR);
 		}
-		entity.setPrivilege(privilege);
-		boolean blockWithUnblock = accountService.blockWithUnblock(entity);
-		if(blockWithUnblock) {
-			return R.ok();
-		}
-		return R.error(S.ACCOUNT_PRIVILEGE_UPDATE_ERR);
-	}
-	
-	@PostMapping(value = "/block/{account}", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-	public R block(@PathVariable String account, String message) {
-		Account entity = accountService.getById(account);
-		if(entity == null) {
-			return R.error(S.ACCOUNT_NOTFUND_ERR);
-		}
-		if(StringUtils.isNotBlank(entity.getBlockedTime())) {
-			return R.error(S.ACCOUNT_BLOCKED_ERR);
-		}
-		if(StringUtils.isBlank(message)) {
-			return R.error(S.ACCOUNT_BLOCKED_MSG_ERR);
-		}
-		entity.setBlockedTime("1");
-		entity.setBlockedReason(entity.getBlockedReason() + message);
-		accountService.blockWithUnblock(entity);
-		return R.ok();
-	}
-	
-	@GetMapping("/unblock/{account}")
-	public R unblock(@PathVariable String account) {
-		Account entity = accountService.getById(account);
-		if(entity == null) {
-			return R.error(S.ACCOUNT_NOTFUND_ERR);
-		}
-		if(StringUtils.isBlank(entity.getBlockedTime())) {
-			return R.error(S.ACCOUNT_UNBLOCKED_ERR);
-		}
-		entity.setBlockedTime("");
-		entity.setBlockedReason("");
-		accountService.blockWithUnblock(entity);
+		list.forEach(entity -> {
+			if(goldCoin != null && goldCoin >= 0) {
+				entity.setGoldCoin(goldCoin.toString());
+			}
+			if(silverCoin!= null && silverCoin >= 0) {
+				entity.setSilverCoin(silverCoin.toString());
+			}
+			accountService.blockWithUnblock(entity);
+		});
 		return R.ok();
 	}
 	
@@ -226,32 +203,6 @@ public class AdminGeneralController implements ApplicationContextAware {
 			}
 			entity.setGoldCoin(String.valueOf(gc));
 			entity.setSilverCoin(String.valueOf(sc));
-			accountService.blockWithUnblock(entity);
-		});
-		return R.ok();
-	}
-	
-	@GetMapping("/updateCoin")
-	public R updateCoin(@RequestParam String account,
-			@RequestParam Integer goldCoin,
-			@RequestParam Integer silverCoin) {
-		List<Account> list = null;
-		if("ALL".equals(account.toUpperCase())) {
-			list = accountService.list();
-		}else {
-			Account entity = accountService.getById(account);
-			list = List.of(entity);
-		}
-		if(CollectionUtils.isEmpty(list)) {
-			return R.error(S.ACCOUNT_NOTFUND_ERR);
-		}
-		list.forEach(entity -> {
-			if(goldCoin != null && goldCoin >= 0) {
-				entity.setGoldCoin(goldCoin.toString());
-			}
-			if(silverCoin!= null && silverCoin >= 0) {
-				entity.setSilverCoin(silverCoin.toString());
-			}
 			accountService.blockWithUnblock(entity);
 		});
 		return R.ok();

@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="/static/css/xadmin.css">
     <script type="text/javascript" src="/static/js/xadmin.js"></script>
     <script src="/static/js/jquery.min.js"></script>
-    <script src="/static/lib/layer/layer.js"></script>
     <script src="/static/lib/layui/layui.js"></script>
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -32,15 +31,15 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-                    <table class="layui-hide" id="AccountList_black" lay-filter="acclist_black"></table>
+                    <table class="layui-hide" id="dataList" lay-filter="dataListFilter"></table>
                     <hr class="layui-bg-green">
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="js/AccountList_black.js"></script>
-<script type="text/html" id="barDemo_locked">
+<script src="/static/js/account/list.js"></script>
+<script type="text/html" id="dataToolbar">
     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="unlock">解封</a>
 </script>
 
