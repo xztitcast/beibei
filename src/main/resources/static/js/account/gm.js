@@ -1,35 +1,23 @@
-layui.use(['table', 'form'], function () {
+layui.use(['table'], function () {
     var table = layui.table
     table.on('tool(dataListFilter)', function (obj) {
         var data = obj.data;
-        if (obj.event === 'locked') {
-            layer.prompt({title: '帐号：'+data.account+' 请输入封禁原因'}, function(val, index){
-                layer.close(index);
-                $.ajax({
-                    type: "POST",
-                    url: "/admin/account/block/" + data.account,
-                    contentType: 'application/x-www-form-urlencoded',
-                    data: 'message=' + val,
-                    success: function (res) {
-                        layer.msg(res)
-                    }
-                })
-            });
-        }
-        if(obj.event === 'unlock'){
-			layer.confirm('确定要解封这个账号吗？', {
+        if(obj.event === 'unGM') {
+			layer.confirm('确定要撤销该帐号的GM权限吗？', {
                 btn: ['确定', '再想想'] //按钮
             }, function () {
                 $.ajax({
                     type: "POST",
-                    url: "/admin/account/unblock/"  + data.account,
+                    url: "/admin/account/privilege",
+                    contentType: 'application/x-www-form-urlencoded',
+                    data: 'account='.concat(data.account).concat('&').concat('privilege=0'),
                     success: function (res) {
-                        layer.msg(res)
+						layer.msg(res.msg)
                     }
                 })
             }, function () {
                 layer.msg("好的", {icon: 1})
-            })
+            });
 		}
     })
     table.render({
@@ -42,7 +30,7 @@ layui.use(['table', 'form'], function () {
 	  		pageName: 'pageNum',
 	  		limitName: 'pageSize'
 	  	},
-	  	where: {isBlocked: true},
+	  	where: {isGM: true},
 	  	parseData: function(res) {
 	    	return {
 		  		'code': res.code,
@@ -67,7 +55,6 @@ layui.use(['table', 'form'], function () {
             {field: 'goldCoin', align: 'center', title: '金元宝'},
             {field: 'silverCoin', align: 'center', title: '银元宝'},
             {field: 'privilege', align: 'center', title: '权限'},
-            {field: 'blockedReason', align: 'center', title: '封禁原因'},
             {field: 'updateTime', align: 'center', title: '更新时间'},
             {fixed: 'right', align: 'center',title: '操作', toolbar: '#dataToolbar'}
         ]]

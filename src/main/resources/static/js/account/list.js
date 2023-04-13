@@ -14,10 +14,10 @@ layui.use(['table', 'form'], function () {
 	  	where: {},
 	  	parseData: function(res) {
 	    	return {
-		  	'code': res.code,
-		  	'msg': res.msg,
-		  	'total': res.result.total,
-		  	'data': res.result.pageList
+		  		'code': res.code,
+		  		'msg': res.msg,
+		  		'total': res.result.total,
+		  		'data': res.result.pageList
 	    	}
 	 	},
         page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
@@ -36,7 +36,6 @@ layui.use(['table', 'form'], function () {
             {field: 'goldCoin', align: 'center', title: '金元宝'},
             {field: 'silverCoin', align: 'center', title: '银元宝'},
             {field: 'privilege', align: 'center', title: '权限'},
-            {field: 'blockedReason', align: 'center', title: '封禁原因'},
             {field: 'updateTime', align: 'center', title: '更新时间'},
             {fixed: 'right', align: 'center',title: '操作', toolbar: '#dataToolbar'}
         ]]

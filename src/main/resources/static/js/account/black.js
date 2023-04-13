@@ -1,21 +1,7 @@
-layui.use(['table', 'form'], function () {
+layui.use(['table'], function () {
     var table = layui.table
     table.on('tool(dataListFilter)', function (obj) {
         var data = obj.data;
-        if (obj.event === 'locked') {
-            layer.prompt({title: '帐号：'+data.account+' 请输入封禁原因'}, function(val, index){
-                layer.close(index);
-                $.ajax({
-                    type: "POST",
-                    url: "/admin/account/block/" + data.account,
-                    contentType: 'application/x-www-form-urlencoded',
-                    data: 'message=' + val,
-                    success: function (res) {
-                        layer.msg(res)
-                    }
-                })
-            });
-        }
         if(obj.event === 'unlock'){
 			layer.confirm('确定要解封这个账号吗？', {
                 btn: ['确定', '再想想'] //按钮

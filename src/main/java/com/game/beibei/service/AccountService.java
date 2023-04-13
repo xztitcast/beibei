@@ -9,7 +9,7 @@ public interface AccountService extends IService<Account> {
 	
 	boolean save(GeneralModel gm);
 
-	P<Account> getAccountList(int pageNum, int pageSize, boolean isGM, boolean isBlocked, String account);
+	P<Account> getAccountList(int pageNum, int pageSize, boolean isGM, Integer block, String account);
 	
 	boolean blockWithUnblock(Account account);
 	

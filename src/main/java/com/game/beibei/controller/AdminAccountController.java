@@ -1,8 +1,10 @@
 package com.game.beibei.controller;
 
 import java.util.Arrays;
+import java.util.Map;
 
 import javax.validation.constraints.NotBlank;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -18,6 +20,7 @@ import com.game.beibei.common.R;
 import com.game.beibei.common.S;
 import com.game.beibei.entity.adball.Account;
 import com.game.beibei.service.AccountService;
+import com.game.beibei.service.BlackService;
 
 @RestController
 @RequestMapping("/admin/account")
@@ -25,6 +28,9 @@ public class AdminAccountController {
 	
 	@Autowired
 	private AccountService accountService;
+	
+	@Autowired
+	private BlackService blackService;
 	
 	@GetMapping("/save")
 	public R save() {
@@ -44,9 +50,9 @@ public class AdminAccountController {
 	public R list(@RequestParam(value="pageNum", defaultValue = "1") Integer pageNum,
 			@RequestParam(value = "pageSize", defaultValue = "20") Integer pageSize, 
 			@RequestParam(value = "isGM", defaultValue = "false") Boolean isGM,
-			@RequestParam(value = "isBlocked", defaultValue = "false") Boolean isBlocked,
+			@RequestParam(required = false) Integer block,
 			@RequestParam(required = false) String account) {
-		P<Account> p = accountService.getAccountList(pageNum, pageSize, isGM, isBlocked, account);
+		P<Account> p = accountService.getAccountList(pageNum, pageSize, isGM, block, account);
 		return R.of(p);
 	}
 	
@@ -66,7 +72,7 @@ public class AdminAccountController {
 	}
 	
 	@PostMapping(value = "/block/{account}", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-	public R block(@PathVariable String account, @RequestParam(defaultValue = "封禁MAC") String message) {
+	public R block(@PathVariable String account, @RequestParam(required = false, defaultValue = "封禁MAC") String message) {
 		Account entity = accountService.getById(account);
 		if(entity == null) {
 			return R.error(S.ACCOUNT_NOTFUND_ERR);
@@ -77,14 +83,19 @@ public class AdminAccountController {
 		if(StringUtils.isBlank(message)) {
 			return R.error(S.ACCOUNT_BLOCKED_MSG_ERR);
 		}
-		entity.setBlockedTime("1");
+		if("封禁MAC".equals(message)) {
+			entity.setBlockedTime("2");
+			blackService.save(entity);
+		}else {
+			entity.setBlockedTime("1");
+		}
 		entity.setBlockedReason(entity.getBlockedReason() + message);
 		accountService.blockWithUnblock(entity);
 		return R.ok();
 	}
 	
 	@GetMapping("/unblock/{account}")
-	public R unblock(@PathVariable String account) {
+	public R unblock(@PathVariable String account, @RequestParam(required = false, defaultValue = "1") Integer block) {
 		Account entity = accountService.getById(account);
 		if(entity == null) {
 			return R.error(S.ACCOUNT_NOTFUND_ERR);
@@ -92,8 +103,26 @@ public class AdminAccountController {
 		if(StringUtils.isBlank(entity.getBlockedTime())) {
 			return R.error(S.ACCOUNT_UNBLOCKED_ERR);
 		}
+		if(block == 2) {
+			blackService.removeByMap(Map.of("account", entity.getAccount()));
+		}
 		entity.setBlockedTime("");
 		entity.setBlockedReason("");
+		accountService.blockWithUnblock(entity);
+		return R.ok();
+	}
+	
+	@PostMapping(value = "/block/{account}")
+	public R black(@PathVariable String account) {
+		Account entity = accountService.getById(account);
+		if(entity == null) {
+			return R.error(S.ACCOUNT_NOTFUND_ERR);
+		}
+		if(StringUtils.isNotBlank(entity.getBlockedTime())) {
+			return R.error(S.ACCOUNT_BLOCKED_ERR);
+		}
+		entity.setBlockedTime("2");
+		entity.setBlockedReason(entity.getBlockedReason() + "封禁MAC");
 		accountService.blockWithUnblock(entity);
 		return R.ok();
 	}

@@ -44,14 +44,14 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
 	}
 
 	@Override
-	public P<Account> getAccountList(int pageNum, int pageSize, boolean isGM, boolean isBlocked, String account) {
+	public P<Account> getAccountList(int pageNum, int pageSize, boolean isGM, Integer block, String account) {
 		IPage<Account> page = new Page<>(pageNum, pageSize);
 		QueryWrapper<Account> wrapper = new QueryWrapper<>();
 		if(isGM) {
 			wrapper.gt("privilege", 0);
 		}
-		if(isBlocked) {
-			wrapper.ne("blocked_time", "");
+		if(block != null) {
+			wrapper.eq("blocked_time", block.toString());
 		}
 		wrapper.eq(StringUtils.isNotBlank(account), "`account`", account);
 		page(page, wrapper);
