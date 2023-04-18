@@ -6,14 +6,13 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
-          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
     <link rel="stylesheet" type="text/css" href="/static/lib/layui/css/layui.css">
     <link rel="stylesheet" href="/static/css/font.css">
     <link rel="stylesheet" href="/static/css/xadmin.css">
-    <script type="text/javascript" src="/static/js/xadmin.js"></script>
     <script src="/static/js/jquery.min.js"></script>
-    <script src="/static/lib/layer/layer.js"></script>
     <script src="/static/lib/layui/layui.js"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -31,17 +30,17 @@
                             <label class="layui-form-label">类型</label>
                             <div class="layui-input-inline" style="width: 180px">
                                 <select name="type" lay-verify="required">
-                                    <option value="polartrans">门派转换</option>
-                                    <option value="moverole">角色转移</option>
-                                    <option value="score">积分大使积分</option>
-                                    <option value="libao_d">道具(不可叠加)</option>
-                                    <option value="libao_d_zp">道具(不可叠加赠品)</option>
-                                    <option value="libao_d_bd">道具(绑定)</option>
-                                    <option value="libao_d_yjbd">道具(永久绑定)</option>
-                                    <option value="libao_s">道具(可叠加)</option>
-                                    <option value="libao_s_zp">道具(可叠加赠品)</option>
-                                    <option value="coin_gold">金元宝</option>
-                                    <option value="coin_silver">银元宝</option>
+                                    <option value="1">门派转换</option>
+                                    <option value="2">角色转移</option>
+                                    <option value="3">积分大使积分</option>
+                                    <option value="4">道具(不可叠加)</option>
+                                    <option value="5">道具(不可叠加赠品)</option>
+                                    <option value="6">道具(绑定)</option>
+                                    <option value="7">道具(永久绑定)</option>
+                                    <option value="8">道具(可叠加)</option>
+                                    <option value="9">道具(可叠加赠品)</option>
+                                    <option value="10">金元宝</option>
+                                    <option value="11">银元宝</option>
                                 </select>
                             </div>
                             <label class="layui-form-label" style="width: 30px">名称</label>
@@ -54,7 +53,7 @@
                                 <input id="num" type="number" value="50" autocomplete="off" class="layui-input">
                             </div>
                             <div class="layui-inline">
-                                <a id="creatCdk" class="layui-btn layui-btn-radius">生成CDK</a>
+                                <a id="creatCdk" class="layui-btn layui-btn-radius" onclick="create()">生成CDK</a>
                             </div>
                             <div class="layui-inline">
                                 <a href="https://fk.baolog.cn/register?user_id=14" target="_blank"
@@ -65,7 +64,7 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">CDK内容</label>
                             <div class="layui-input-inline">
-            <textarea style="width: 600px;height: 350px" id="cdks" name="cdks"
+            <textarea lay-verify="required" style="width: 600px;height: 350px" id="content" name="content"
                       placeholder="门派转换和角色转移可任意填写（不要空，可以填添加日期）
                                    积分大使积分：填写兑换数值即可！！！
                                    道具：格式为名称+空格+数量！
@@ -91,44 +90,29 @@
         var form = layui.form;
         //监听提交
         form.on('submit(dataFormSubmit)', function(data) {
+			var index = parent.layer.getFrameIndex(window.name);
 			$.ajax({
 				type: 'POST',
-				url: '/login',
+				url: '/admin/cdk/save',
 				contentType: 'application/json',
 				data: JSON.stringify(data.field),
 				success: function(res) {
-					layer.msg(result)
+					layer.msg(res.msg, {icon: 1, time: 1000})
+					parent.layer.close(index)
 				}
 			})
 			return false
 		})
     });
-    document.getElementById("addButton").addEventListener("click", function () {
-        layer.msg("请耐心等待。。。", {
-            time: 10000
-        })
-        $.ajax({
-            type: "POST",
-            url: "addCdks",
-            data: $('#addCDKForm').serialize(),
-            success: function (result) {
-                layer.msg(result)
-            }
-        })
-    })
-    document.getElementById("creatCdk").addEventListener("click", function () {
-        cdks.value = randomWord()
-        var num = document.getElementById("num").value
-        for (var i = 0; i < num - 1; i++) {
-            addcdk()
-        }
-        cdks.value = cdks.value + '\n'
-    })
 
-    function addcdk() {
-        cdks.value = cdks.value + '\n' + randomWord()
-    }
-
+    function create(){
+		var arr = []
+		var num = $("#num").val()
+		for(var i = 0; i < num; i++){
+			arr.push(randomWord());
+		}
+		content.value = arr.join("\n")
+	}
     function randomWord() {
         var str = '',
             arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',

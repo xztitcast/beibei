@@ -7,11 +7,11 @@ layui.use(['table', 'form'], function () {
         url: '/admin/account/list',
         toolbar: true,   //开启头部工具栏，让工具栏左侧显示默认的内置模板
         cellMinWidth: 10, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+        where: {},
 	  	request: {
 	  		pageName: 'pageNum',
 	  		limitName: 'pageSize'
 	  	},
-	  	where: {},
 	  	parseData: function(res) {
 	    	return {
 		  		'code': res.code,
@@ -41,7 +41,6 @@ layui.use(['table', 'form'], function () {
         ]]
     }
     form.on('submit(search)', function(data) {
-		console.log(data)
 		baseModel.where = data.field
 		table.reload('dataList', baseModel)
 		return false

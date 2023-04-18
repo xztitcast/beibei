@@ -14,7 +14,7 @@ spring:
       primary: master
       datasource:
         master:
-          url: jdbc:mysql://192.168.25.99:3306/beibei?allowMultiQueries=true&autoReconnect=true&useUnicode=true&characterEncoding=GBK&zeroDateTimeBehavior=convertToNull&useSSL=false
+          url: jdbc:mysql://192.168.25.99:3306/beibei?allowMultiQueries=true&autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
           username: root
           password: '@jiushi123@'
           driver-class-name: com.mysql.jdbc.Driver
