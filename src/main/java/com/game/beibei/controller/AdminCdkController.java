@@ -59,7 +59,7 @@ public class AdminCdkController {
 	
 	@PostMapping("/delete")
 	public R delete(@RequestBody Long[] ids) {
-		System.out.println(Arrays.toString(ids));
+		this.ckdService.removeBatchByIds(Arrays.asList(ids));
 		return R.ok();
 	}
 }

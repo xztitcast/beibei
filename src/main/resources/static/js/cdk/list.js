@@ -65,6 +65,7 @@ function removeAll(){
 		layer.msg("请选择需要删除的行", {icon: 5, time: 1000})
 	}else{
 		remove(ids)
+		location.reload()
 	}
 }
 
