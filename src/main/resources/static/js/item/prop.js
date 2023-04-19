@@ -1,32 +1,34 @@
 layui.use('form', function () {
     var form = layui.form;
-    //监听提交
+    form.on('submit(dataFormSubmitFilter)', function(data) {
+        var json = {}
+        $.ajax({
+            type: "POST",
+            url: "//admin/general/update",
+            dataType: 'json',
+            data: JSON.stringify(data.field),
+            success: function (result) {
+                layer.msg(result)
+            }
+        })
+    })
 });
-document.getElementById("GetRoles_send").addEventListener("click", function () {
-    var account=document.getElementById("sendAccount").value;
-    $.ajax({ //获取角色名和GID填充到option中
-        type: "POST",
-        url: "../../User/UserGetRoleNames?account="+account,
-        success: function (result) {
-            var names = JSON.parse(result)
-            $("#rolename_send").empty();
-            for (let namesKey in names) {
-                document.getElementById("rolename_send").add(new Option(names[namesKey],namesKey))
+
+function getRole() {
+    var account = $("#account").val()
+    $.ajax({
+        type: "GET",
+        url: `/admin/general/gidList/${account}`,
+        success: function (res) {
+            if(res && res.code === 0) {
+                $("#gidList").empty();
+                var gidList = JSON.parse(res.result)
+                for(var idx in gidList){
+                    var item = gidList[idx]
+                    $("#gidList").add(new Option(item.label, item.value))
+                }
             }
             layui.form.render()
         }
     })
-})
-document.getElementById("SendButton").addEventListener("click", function () {
-    layer.msg("请耐心等待。。。", {
-        time: 10000
-    })
-    $.ajax({
-        type: "POST",
-        url: "AdminSendItem",
-        data: $('#SendItemForm').serialize(),
-        success: function (result) {
-            layer.msg(result)
-        }
-    })
-})
+}

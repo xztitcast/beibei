@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.game.beibei.common.jacson.EncodeSerializer;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +22,7 @@ public class Cdk implements Serializable {
 	@TableId(type = IdType.AUTO)
 	private Long id;
 
+	@JsonSerialize(using = EncodeSerializer.class)
 	@TableField(value = "`name`")
 	private String name;
 	

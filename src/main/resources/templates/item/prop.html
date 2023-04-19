@@ -10,17 +10,15 @@
     <link rel="stylesheet" type="text/css" href="/static/lib/layui/css/layui.css">
     <link rel="stylesheet" href="/static/css/font.css">
     <link rel="stylesheet" href="/static/css/xadmin.css">
-    <script type="text/javascript" src="/static/js/xadmin.js"></script>
     <script src="/static/js/jquery.min.js"></script>
-    <script src="/static/lib/layer/layer.js"></script>
     <script src="/static/lib/layui/layui.js"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 <body>
-
 
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
@@ -34,7 +32,7 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">道具名称</label>
                             <div class="layui-input-inline">
-                                <input id="itemName" type="text" name="itemName" required lay-verify="required" value=""
+                                <input id="name" type="text" name="name" required lay-verify="required" value=""
                                        autocomplete="off"
                                        placeholder="ETC中必须有才可以！" class="layui-input">
                             </div>
@@ -42,20 +40,20 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">道具类型</label>
                             <div class="layui-input-inline">
-                                <select name="itemType" lay-verify="required">
-                                    <option value="libao_s">道具(可叠加)</option>
-                                    <option value="libao_s_zp">道具(可叠加赠品)</option>
-                                    <option value="libao_d">道具(不可叠加)</option>
-                                    <option value="libao_d_zp">道具(不可叠加赠品)</option>
-                                    <option value="libao_d_bd">道具(绑定)</option>
-                                    <option value="libao_d_yjbd">道具(永久绑定)</option>
+                                <select name="type" lay-verify="required">
+                                    <option value="1">道具(可叠加)</option>
+                                    <option value="2">道具(可叠加赠品)</option>
+                                    <option value="3">道具(不可叠加)</option>
+                                    <option value="4">道具(不可叠加赠品)</option>
+                                    <option value="5">道具(绑定)</option>
+                                    <option value="6">道具(永久绑定)</option>
                                 </select>
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">发送数量</label>
                             <div class="layui-input-inline">
-                                <input id="itemNum" type="text" name="itemNum" required lay-verify="required" value=""
+                                <input id="num" type="text" name="num" required lay-verify="required" value=""
                                        autocomplete="off"
                                        class="layui-input">
                             </div>
@@ -63,23 +61,20 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">发送帐号</label>
                             <div class="layui-input-inline">
-                                <input id="sendAccount" type="text" name="sendAccount" required lay-verify="required"
+                                <input id="account" type="text" name="account" required lay-verify="required"
                                        value=""
                                        autocomplete="off" class="layui-input">
                             </div>
-                            <a id="GetRoles_send" class="layui-btn layui-btn-radius">获取角色</a>
+                            <a class="layui-btn layui-btn-radius" onclick="getRole()">获取角色</a>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">角色名</label>
                             <div class="layui-input-inline">
-                                <select id="rolename_send" name="gid" lay-verify="required">
-                                </select>
+                                <select id="gidList" name="gid" lay-verify="required"></select>
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <div class="layui-input-block">
-                                <button type="button" id="SendButton" class="layui-btn">立即发送</button>
-                            </div>
+                            <button class="layui-btn" lay-submit lay-filter="dataFormSubmitFilter">立即发送</button>
                         </div>
                     </form>
                 </div>

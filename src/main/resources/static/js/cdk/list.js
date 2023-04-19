@@ -37,8 +37,8 @@ layui.use(['form', 'table'], function () {
 	        {field: 'name', align: 'center', title: '物品名称'},
 	        {field: 'status', align: 'center', title: '使用状态', templet: '#statusTpl'},
 	        {field: 'account', align: 'center', title: '使用帐号'},
-	        {field: 'created', align: 'center', title: '使用时间', sort: true},
-	        {field: 'updated', align: 'center', title: '添加时间', sort: true},
+			{field: 'updated', align: 'center', title: '使用时间', sort: true},
+			{field: 'created', align: 'center', title: '添加时间', sort: true},
 	        {fixed: 'right', align: 'center',title: '操作', toolbar: '#dataToolbar'}
 	    ]]
 	}
@@ -65,7 +65,6 @@ function removeAll(){
 		layer.msg("请选择需要删除的行", {icon: 5, time: 1000})
 	}else{
 		remove(ids)
-		location.reload()
 	}
 }
 
@@ -80,8 +79,12 @@ function remove(ids = []){
 	        contentType:"application/json",
 	        data: JSON.stringify(ids),
 	        success: function (res) {
-	            layer.msg(res.msg)
-	            
+				if(res.code === 0){
+					layer.msg(res.msg, {icon: 1, time: 1000})
+					location.reload()
+				}else{
+					layer.msg(res.msg, {icon: 5, time: 1000})
+				}
 	        }
 	    })
     }, function () {

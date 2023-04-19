@@ -53,7 +53,7 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
 		if(block != null) {
 			wrapper.eq("blocked_time", block.toString());
 		}
-		wrapper.eq(StringUtils.isNotBlank(account), "`account`", account);
+		wrapper.like(StringUtils.isNotBlank(account), "`account`", account);
 		page(page, wrapper);
 		return new P<>(page.getTotal(), page.getRecords());
 	}
