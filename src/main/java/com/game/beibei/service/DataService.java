@@ -24,4 +24,6 @@ public interface DataService extends IService<Data> {
 	boolean setContentVcash(String gid, int vcash);
 	
 	boolean setContentTao(String gid, int tao);
+
+	boolean setContentItem(String gid, String mode);
 }

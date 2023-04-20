@@ -304,7 +304,22 @@ public class DataServiceImpl extends ServiceImpl<DataMapper, Data> implements Da
 	public boolean setContentTao(String gid, int tao) {
 		return setContent(gid, "", tao * 360, "\"tao\"");
 	}
-	
+
+	@Override
+	public boolean setContentItem(String gid, String mode) {
+		Data entity = getDataByMultiId(Path.user.name(), gid, "carry");
+		String content = CharsetUtil.convert(entity.getContent(), CharsetUtil.ISO_8859_1, CharsetUtil.GBK);
+		for (int i = 101; i <= 180; i++) {
+			if (!content.contains(i + ":\"")) {
+				String item = mode.replace("#ID", i+"");
+				entity.setContent(content.replace("\"carry\":([", "\"carry\":([" + item));
+				entity.setChecksum(ChecksumUtil.checksum(entity.getPath() + entity.getName() + entity.getContent()));
+				return this.baseMapper.updateByMultiId(entity) == 1;
+			}
+		}
+		return false;
+	}
+
 	private boolean setContent(String gid, String branch, int num, String type) {
 		StringBuilder builder = new StringBuilder();
 		Data entity = getDataByMultiId(Path.user.name(), gid, branch);
