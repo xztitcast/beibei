@@ -1,10 +1,9 @@
 layui.use('form', function () {
     var form = layui.form;
     form.on('submit(dataFormSubmitFilter)', function(data) {
-        var json = {}
         $.ajax({
             type: "POST",
-            url: "//admin/general/update",
+            url: "/admin/mode/item",
             dataType: 'json',
             data: JSON.stringify(data.field),
             success: function (result) {

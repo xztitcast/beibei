@@ -32,7 +32,7 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">积分数量</label>
                             <div class="layui-input-inline">
-                                <input id="itemNum" type="text" name="itemNum" required lay-verify="required" value=""
+                                <input id="num" type="text" name="num" required lay-verify="required" value=""
                                        autocomplete="off"
                                        class="layui-input">
                             </div>
@@ -40,22 +40,21 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">发送帐号</label>
                             <div class="layui-input-inline">
-                                <input id="sendAccount" type="text" name="sendAccount" required lay-verify="required"
+                                <input id="account" type="text" name="account" required lay-verify="required"
                                        value=""
                                        autocomplete="off" class="layui-input">
                             </div>
-                            <a id="GetRoles_send" class="layui-btn layui-btn-radius">获取角色</a>
+                            <a class="layui-btn layui-btn-radius" onclick="getRole()">获取角色</a>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">角色名</label>
                             <div class="layui-input-inline">
-                                <select id="rolename_send" name="gid" lay-verify="required">
-                                </select>
+                                <select id="gidList" name="gid" lay-verify="required"></select>
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <div class="layui-input-block">
-                                <button type="button" id="SendButton" class="layui-btn">立即发送</button>
+                            <div class="layui-form-item">
+                                <button class="layui-btn" lay-submit lay-filter="dataFormSubmitFilter">立即发送</button>
                             </div>
                         </div>
                     </form>
