@@ -1,4 +1,4 @@
-package com.game.beibei.common.jacson;
+package com.game.beibei.common.serialize;
 
 import java.io.IOException;
 import org.apache.commons.lang.StringUtils;

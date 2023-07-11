@@ -79,7 +79,7 @@ function remove(ids = []){
 	        contentType:"application/json",
 	        data: JSON.stringify(ids),
 	        success: function (res) {
-				if(res.code === 0){
+				if(res && res.code === 0){
 					layer.msg(res.msg, {icon: 1, time: 1000})
 					location.reload()
 				}else{

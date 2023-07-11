@@ -8,8 +8,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.game.beibei.common.jacson.EncodeSerializer;
-import com.game.beibei.common.jacson.MacAddressSerializer;
+import com.game.beibei.common.serialize.EncodeSerializer;
+import com.game.beibei.common.serialize.MacAddressSerializer;
 
 import lombok.Getter;
 import lombok.Setter;

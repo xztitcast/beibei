@@ -10,16 +10,25 @@
     <link rel="stylesheet" type="text/css" href="/static/lib/layui/css/layui.css">
     <link rel="stylesheet" href="/static/css/font.css">
     <link rel="stylesheet" href="/static/css/xadmin.css">
-    <script type="text/javascript" src="/static/js/xadmin.js"></script>
     <script src="/static/js/jquery.min.js"></script>
-    <script src="/static/lib/layer/layer.js"></script>
     <script src="/static/lib/layui/layui.js"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 <body>
+<div class="x-nav">
+    <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">演示</a>
+        <a><cite>发送积分大使积分</cite></a>
+    </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+        <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
+    </a>
+</div>
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
@@ -49,12 +58,15 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">角色名</label>
                             <div class="layui-input-inline">
-                                <select id="gidList" name="gid" lay-verify="required"></select>
+                                <select id="gidList" name="gid">
+                                    <option value="" required lay-verify="required">请选择</option>
+                                </select>
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <div class="layui-form-item">
+                            <div class="layui-input-block">
                                 <button class="layui-btn" lay-submit lay-filter="dataFormSubmitFilter">立即发送</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                             </div>
                         </div>
                     </form>

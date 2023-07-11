@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>贝贝游戏管理系统</title>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="stylesheet" type="text/css" href="/static/lib/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/lib/layui/layui.js"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+</head>
+<body onload="init()">
+<div class="x-nav">
+    <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">演示</a>
+        <a>
+            <cite>区组配置</cite></a>
+    </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+        <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
+    </a>
+</div>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <form class="layui-form" lay-filter="setDataForm">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">真实区名</label>
+                            <div class="layui-input-inline">
+                                <input id="name" type="text" name="name" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">显示区名</label>
+                            <div class="layui-input-inline">
+                                <input id="showName" type="text" name="showName" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">赠送金元宝</label>
+                            <div class="layui-input-inline">
+                                <input id="goldCoin" type="text" name="goldCoin" autocomplete="off"
+                                       class="layui-input">
+                            </div>
+                            <label class="layui-form-label">赠送银元宝</label>
+                            <div class="layui-input-inline">
+                                <input id="silverCoin" type="text" name="silverCoin" autocomplete="off"
+                                       class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">注册开关</label>
+                            <div class="layui-input-inline">
+                                <input id="reg" type="checkbox" name="reg" lay-skin="switch" value="1"
+                                       lay-text="普通注册|普通注册">
+                                <input id="dfReg" type="checkbox" name="dfReg" lay-skin="switch" value="1"
+                                       lay-text="大飞注册|大飞注册">
+                            </div>
+                            <label class="layui-form-label">注册登录数</label>
+                            <div class="layui-input-inline" style="width: 110px">
+                                <input id="limitNum" type="text" name="limitNum" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">法宝共生</label>
+                            <div class="layui-input-inline">
+                                <input id="fabao" type="checkbox" name="fabao" lay-skin="switch" value="1"
+                                       lay-text="开启自助添加|关闭自助添加">
+                            </div>
+
+                            <label class="layui-form-label">消耗金元宝</label>
+                            <div class="layui-input-inline" style="width: 110px">
+                                <input id="fbUseGold" type="text" name="fbUseGold" class="layui-input" value="0">
+                            </div>
+
+                            <label class="layui-form-label">消耗银元宝</label>
+                            <div class="layui-input-inline" style="width: 110px">
+                                <input id="fbUseSilver" type="text" name="fbUseSilver" class="layui-input" value="0">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">双属性</label>
+                            <div class="layui-input-inline">
+                                <input id="shuxing" type="checkbox" name="shuxing" lay-skin="switch"
+                                       value="1"
+                                       lay-text="开启自助添加|关闭自助添加">
+                            </div>
+
+                            <label class="layui-form-label">消耗金元宝</label>
+                            <div class="layui-input-inline" style="width: 110px">
+                                <input id="sxUseGold" type="text" name="sxUseGold" class="layui-input"
+                                       value="0">
+                            </div>
+                            <label class="layui-form-label">消耗银元宝</label>
+                            <div class="layui-input-inline" style="width: 110px">
+                                <input id="sxUseSilver" type="text" name="sxUseSilver" class="layui-input"
+                                       value="0">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">门派转换</label>
+                            <div class="layui-input-inline">
+                                <input id="polar" type="checkbox" name="polar" lay-skin="switch" value="1"
+                                       lay-text="转换开启|转换关闭">
+                                <input id="polarCdk" type="checkbox" name="polarCdk" lay-skin="switch" value="1"
+                                       lay-text="CDK验证开|CDK验证关">
+                            </div>
+                            <label class="layui-form-label">消耗金元宝</label>
+                            <div class="layui-input-inline" style="width: 110px">
+                                <input id="polarUseGold" type="text" name="polarUseGold" value="0"
+                                       class="layui-input">
+                            </div>
+                            <label class="layui-form-label">消耗银元宝</label>
+                            <div class="layui-input-inline" style="width: 110px">
+                                <input id="polarUseSilver" type="text" name="polarUseSilver" value="0"
+                                       class="layui-input">
+                            </div>
+
+                        </div>
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">公告信息</label>
+                            <div class="layui-input-block">
+            <textarea style="width: 500px;height: 50px" id="notice" name="notice" placeholder="请输入内容"
+                      class="layui-textarea"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <button type="submit" lay-submit lay-filter="dataFormSubmit" class="layui-btn">更新配置</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/js/config/area.js"></script>
+</body>
+</html>

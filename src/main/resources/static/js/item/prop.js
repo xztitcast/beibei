@@ -26,6 +26,8 @@ function getRole() {
                     var item = gidList[idx]
                     $("#gidList").add(new Option(item.label, item.value))
                 }
+            }else{
+                layer.msg(res.msg, {icon: 5, time: 1000})
             }
             layui.form.render()
         }

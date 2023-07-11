@@ -1,13 +1,12 @@
 package com.game.beibei.entity;
 
-import java.io.Serializable;
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
 
 @Getter
 @Setter
@@ -21,7 +20,7 @@ public class Area implements Serializable {
 
 	private String name;
 	
-	private String showname;
+	private String showName;
 	
 	private String goldCoin;
 	
@@ -31,33 +30,32 @@ public class Area implements Serializable {
 	
 	private Integer dfReg;
 	
-	private Integer faBaoGongSheng;
+	private Integer fabao;
 	
-	private String fbgsTaskGold;
+	private String fbUseGold;
 	
-	private String fbgsTaskSilver;
+	private String fbUseSilver;
 	
-	private Integer shuangShuXing;
+	private Integer shuxing;
 	
-	private String ssxTaskGold;
+	private String sxUseGold;
 	
-  	private String ssxTaskSilver;
+  	private String sxUseSilver;
   	
-  	private Integer polarTrans;
+  	private Integer polar;
+
+	private Integer polarCdk;
   	
-  	private String polarTransTaskGold;
+  	private String polarUseGold;
   	
-  	private String polarTransTaskSilver;
+  	private String polarUseSilver;
   	
-  	private String publicInf;
+  	private String notice;
   	
   	private Integer limitNum;
-  	
-  	private Integer polarTransCDK;
   	
   	private String chargeLink;
   	
   	private String cdkLink;
-  	
-  	private Integer system;
+
 }

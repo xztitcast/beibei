@@ -1,18 +1,15 @@
 package com.game.beibei.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.game.beibei.entity.Area;
 import com.game.beibei.entity.Black;
 import com.game.beibei.entity.adball.Account;
 import com.game.beibei.mapper.BlackMapper;
 import com.game.beibei.service.AreaService;
 import com.game.beibei.service.BlackService;
-
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service("blackService")
@@ -29,7 +26,7 @@ public class BlackServiceImpl extends ServiceImpl<BlackMapper, Black> implements
 		entity.setIp(a.getLastLoginIp());
 		entity.setMac(a.getLastLoginId());
 		boolean save = this.save(entity);
-		if(save) {
+		/*if(save) {
 			String cmd = null;
 			String reloadCmd = null;
 			Area area = areaService.getById(1);
@@ -48,7 +45,7 @@ public class BlackServiceImpl extends ServiceImpl<BlackMapper, Black> implements
 				log.error("防火墙命令执行失败", e);
 			}
 			
-		}
+		}*/
 	}
 
 }
